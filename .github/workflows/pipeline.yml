@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "ashwanth01" --password-stdin
+
+    - name: Build Docker image
+      run: docker build -t ashwanth01/ashapp-backend:latest .
+
+    - name: Push Docker image
+      run: docker push ashwanth01/ashapp-backend:latest
+
+    - name: Apply Kubernetes manifests
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+
+    - name: Get Service NodePort URL
+      run: |
+        NODE_IP=$(hostname -I | awk '{print $1}')
+        echo "App running at: http://$NODE_IP:30080"
+

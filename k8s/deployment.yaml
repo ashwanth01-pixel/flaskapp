@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ashapp-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashapp-backend
+  template:
+    metadata:
+      labels:
+        app: ashapp-backend
+    spec:
+      containers:
+      - name: ashapp-backend
+        image: ashwanth01/ashapp-backend:latest
+        ports:
+        - containerPort: 5000
+
