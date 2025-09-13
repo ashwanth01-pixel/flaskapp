@@ -36,3 +36,4 @@ spec:
             port: 5000
           initialDelaySeconds: 15
           periodSeconds: 10
+        imagePullPolicy: Always

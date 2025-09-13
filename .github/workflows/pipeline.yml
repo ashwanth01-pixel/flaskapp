@@ -42,3 +42,8 @@ jobs:
       run: |
         kubectl rollout status deployment/ashapp-backend
         kubectl get pods -l app=ashapp-backend
+
+    - name: Test application
+      run: |
+        sleep 10
+        curl -f http://$NODE_IP:30080 || exit 1

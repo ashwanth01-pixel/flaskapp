@@ -127,3 +127,43 @@
     +      run: |
     +        kubectl rollout status deployment/ashapp-backend
     +        kubectl get pods -l app=ashapp-backend
+
+
+---
+### Fixes Applied (2025-09-13T04:31:46.607821 UTC)
+
+- **app.py**
+    No changes
+
+- **Dockerfile**
+    --- a/Dockerfile
+    +++ b/Dockerfile
+    @@ -5,3 +5,6 @@
+     COPY requirements.txt .
+     RUN pip install --no-cache-dir -r requirements.txt
+     
+    +COPY . .
+    +
+    +CMD ["python", "app.py"]
+
+- **k8s/deployment.yaml**
+    --- a/k8s/deployment.yaml
+    +++ b/k8s/deployment.yaml
+    @@ -36,3 +36,4 @@
+                 port: 5000
+               initialDelaySeconds: 15
+               periodSeconds: 10
+    +        imagePullPolicy: Always
+
+- **.github/workflows/pipeline.yml**
+    --- a/.github/workflows/pipeline.yml
+    +++ b/.github/workflows/pipeline.yml
+    @@ -42,3 +42,8 @@
+           run: |
+             kubectl rollout status deployment/ashapp-backend
+             kubectl get pods -l app=ashapp-backend
+    +
+    +    - name: Test application
+    +      run: |
+    +        sleep 10
+    +        curl -f http://$NODE_IP:30080 || exit 1
