@@ -40,3 +40,5 @@ spec:
         env:
         - name: FLASK_ENV
           value: "production"
+        - name: PYTHONUNBUFFERED
+          value: "1"
