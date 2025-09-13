@@ -167,3 +167,66 @@
     +      run: |
     +        sleep 10
     +        curl -f http://$NODE_IP:30080 || exit 1
+
+
+---
+### Fixes Applied (2025-09-13T04:37:48.787828 UTC)
+
+- **.github/workflows/pipeline.yml**
+    --- a/.github/workflows/pipeline.yml
+    +++ b/.github/workflows/pipeline.yml
+    @@ -45,5 +45,11 @@
+     
+         - name: Test application
+           run: |
+    -        sleep 10
+    +        sleep 30
+             curl -f http://$NODE_IP:30080 || exit 1
+    +
+    +    - name: Cleanup
+    +      if: failure()
+    +      run: |
+    +        kubectl delete deployment ashapp-backend
+    +        kubectl delete service ashapp-backend
+
+- **Dockerfile**
+    --- a/Dockerfile
+    +++ b/Dockerfile
+    @@ -7,4 +7,6 @@
+     
+     COPY . .
+     
+    -CMD ["python", "app.py"]
+    +EXPOSE 5000
+    +
+    +CMD ["python", "-u", "app.py"]
+
+- **app.py**
+    --- a/app.py
+    +++ b/app.py
+    @@ -10,4 +10,4 @@
+         return "Hello from Ashapp Backend running on Kubernetes!"
+     
+     if __name__ == "__main__":
+    -    app.run(host="0.0.0.0", port=5000)
+    +    app.run(host="0.0.0.0", port=5000, debug=False)
+
+- **k8s/deployment.yaml**
+    --- a/k8s/deployment.yaml
+    +++ b/k8s/deployment.yaml
+    @@ -3,7 +3,7 @@
+     metadata:
+       name: ashapp-backend
+     spec:
+    -  replicas: 1
+    +  replicas: 2
+       selector:
+         matchLabels:
+           app: ashapp-backend
+    @@ -37,3 +37,6 @@
+               initialDelaySeconds: 15
+               periodSeconds: 10
+             imagePullPolicy: Always
+    +        env:
+    +        - name: FLASK_ENV
+    +          value: "production"

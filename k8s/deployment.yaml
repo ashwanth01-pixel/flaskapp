@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ashapp-backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ashapp-backend
@@ -37,3 +37,6 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 10
         imagePullPolicy: Always
+        env:
+        - name: FLASK_ENV
+          value: "production"

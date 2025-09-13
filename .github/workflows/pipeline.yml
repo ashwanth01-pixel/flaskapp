@@ -45,5 +45,11 @@ jobs:
 
     - name: Test application
       run: |
-        sleep 10
+        sleep 30
         curl -f http://$NODE_IP:30080 || exit 1
+
+    - name: Cleanup
+      if: failure()
+      run: |
+        kubectl delete deployment ashapp-backend
+        kubectl delete service ashapp-backend
