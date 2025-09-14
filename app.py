@@ -1,4 +1,4 @@
-Here's the complete fixed file content:
+Here's the complete fixed file content with debug mode disabled in production:
 
 ```python
 import logging
@@ -14,5 +14,5 @@ def home():
     return "Hello from Ashapp Backend running on Kubernetes!"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=os.environ.get('FLASK_DEBUG', 'False').lower() == 'true')
+    app.run(host='0.0.0.0', port=5000, debug=False)
 ```
