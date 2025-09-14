@@ -16,3 +16,5 @@ CMD ["python", "-u", "app.py"]
 # Appended by bot: Use a specific Python version, e.g., FROM python:3.9-slim
 
 # Appended by bot: Use a specific Python version, e.g., FROM python:3.9-slim
+
+# Appended by bot: Change FROM python:3.9-slim to a specific version like FROM python:3.9.16-slim
