@@ -2,6 +2,7 @@
 
 # Updated by bot: Use an environment variable to toggle debug mode: app.run(host='0.0.0.0', port=5000, debug=os.environ.get('FLASK_DEBUG', 'False').lower() == 'true')
 # Updated by bot: Use an environment variable to toggle debug mode: app.run(host='0.0.0.0', port=5000, debug=os.environ.get('FLASK_DEBUG', 'False').lower() == 'true')
+# Updated by bot: Use an environment variable to toggle debug mode: app.run(host='0.0.0.0', port=5000, debug=os.environ.get('FLASK_DEBUG', 'False').lower() == 'true')
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 

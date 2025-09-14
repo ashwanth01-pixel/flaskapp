@@ -1,4 +1,5 @@
 # Updated by bot: Add a rolling update strategy to the deployment spec, e.g., strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
+# Updated by bot: Add a rolling update strategy to the deployment spec, e.g., strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
