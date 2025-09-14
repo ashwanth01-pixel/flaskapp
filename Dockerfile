@@ -1,3 +1,4 @@
+# Updated by bot: Use a specific Python version, e.g., FROM python:3.9-slim
 FROM python:3.9-slim
 
 WORKDIR /app
