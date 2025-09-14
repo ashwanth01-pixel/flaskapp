@@ -1,16 +1,3 @@
-# Updated by bot: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
-# Updated by bot: Add Git SHA to Docker image tags for better versioning: tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
-# Updated by bot: Use Git SHA for versioning: tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
-# Updated by bot: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
-# Updated by bot: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
 
 jobs:
   build-and-deploy:
