@@ -31,3 +31,5 @@ CMD ["python", "-u", "app.py"]
 
 # Appended by bot: Change FROM python:3.9.16-slim to a specific version like FROM python:3.9.16-slim
 # Appended by bot: Change 'FROM python:3.9.16-slim' to a specific version like 'FROM python:3.9.16-slim' for consistency and reproducibility.
+
+# Appended by bot: Create a .dockerignore file to exclude files like .git, __pycache__, etc.

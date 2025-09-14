@@ -352,3 +352,31 @@
 - Problem: Missing rolling update strategy
 - Applied Fix: Add a rolling update strategy to the deployment spec: strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
 
+### File: requirements.txt
+- Problem: Flask version is pinned multiple times
+- Applied Fix: Remove duplicate Flask version pins, keeping only one 'flask==2.3.2' line
+
+### File: Dockerfile
+- Problem: No .dockerignore file to exclude unnecessary files
+- Applied Fix: Create a .dockerignore file to exclude files like .git, __pycache__, etc.
+
+### File: app.py
+- Problem: Debug mode might be enabled in production
+- Applied Fix: Ensure debug mode is disabled in production by setting debug=False or using an environment variable
+
+### File: k8s/deployment.yaml
+- Problem: Missing resource limits and requests
+- Applied Fix: Add resource limits and requests to the container spec to ensure proper resource allocation
+
+### File: .github/workflows/pipeline.yml
+- Problem: No linting or unit tests in CI pipeline
+- Applied Fix: Add steps for linting (e.g., flake8) and running unit tests before building the Docker image
+
+### File: k8s/deployment.yaml
+- Problem: Missing readiness and liveness probes
+- Applied Fix: Add readiness and liveness probes to ensure proper health checking of the application
+
+### File: .github/workflows/pipeline.yml
+- Problem: Secrets are not properly managed
+- Applied Fix: Use GitHub Secrets for sensitive information like Docker Hub credentials
+
