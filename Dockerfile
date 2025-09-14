@@ -12,3 +12,5 @@ COPY . .
 EXPOSE 5000
 
 CMD ["python", "-u", "app.py"]
+
+# Appended by bot: Use a specific Python version, e.g., FROM python:3.9-slim
