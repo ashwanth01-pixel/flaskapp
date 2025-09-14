@@ -1,3 +1,4 @@
+# Updated by bot: Add a rolling update strategy to the deployment spec: strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
 # Updated by bot: Add resource limits and requests to the container spec to ensure proper resource allocation and prevent resource exhaustion.
 # Updated by bot: Add a rolling update strategy to the deployment spec: strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
 # Updated by bot: Add resource limits and requests to the container spec to ensure proper resource allocation and prevent resource exhaustion.
