@@ -1,3 +1,4 @@
+# Updated by bot: Ensure debug mode is disabled in production by setting debug=False or using an environment variable.
 from flask import Flask
 import logging
 import os
