@@ -20,3 +20,7 @@
 - Problem: No version tagging for Docker images, which may make rollbacks difficult
 - Applied Fix: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
 
+### File: app.py
+- Problem: Debug mode is hardcoded to False, which may hinder development
+- Applied Fix: Use an environment variable to toggle debug mode: app.run(host='0.0.0.0', port=5000, debug=os.environ.get('FLASK_DEBUG', 'False').lower() == 'true')
+
