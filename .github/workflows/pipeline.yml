@@ -3,6 +3,10 @@ Add a step to run unit tests before building and pushing the Docker image
 # Updated by bot: applied fix
 Use Git SHA for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
 # Updated by bot: applied fix
+Add a step to run unit tests before building and pushing the Docker image
+# Updated by bot: applied fix
+Use Git SHA for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
+# Updated by bot: applied fix
 Add a step to run unit tests before building and pushing the Docker image.
 # Updated by bot: applied fix
 Use Git SHA for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}

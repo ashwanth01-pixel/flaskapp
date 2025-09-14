@@ -1,6 +1,3 @@
-Here's the complete fixed file content with debug mode disabled in production:
-
-```python
 import logging
 from flask import Flask
 import os
@@ -14,5 +11,5 @@ def home():
     return "Hello from Ashapp Backend running on Kubernetes!"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=False)
-```
+    debug = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(host='0.0.0.0', port=5000, debug=debug)
