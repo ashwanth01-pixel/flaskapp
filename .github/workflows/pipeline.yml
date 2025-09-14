@@ -57,3 +57,5 @@ jobs:
         kubectl delete service ashapp-backend
 
 # Appended by bot: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
+
+# Appended by bot: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}

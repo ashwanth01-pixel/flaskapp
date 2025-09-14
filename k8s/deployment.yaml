@@ -46,3 +46,5 @@ spec:
           value: "1"
 
 # Appended by bot: Add a rolling update strategy to the deployment spec, e.g., strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
+
+# Appended by bot: Add a rolling update strategy to the deployment spec, e.g., strategy: {type: RollingUpdate, rollingUpdate: {maxSurge: 1, maxUnavailable: 0}}
