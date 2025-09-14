@@ -1,4 +1,5 @@
 
+# Updated by bot: Use Git SHA for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
 # Updated by bot: Use Git SHA or another versioning scheme for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
 jobs:
   build-and-deploy:
