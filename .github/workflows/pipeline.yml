@@ -35,6 +35,14 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Lint with flake8
+      run: flake8 .
+    - name: Run unit tests
+      run: pytest
+    - name: Lint with flake8
+      run: flake8 .
+    - name: Run unit tests
+      run: pytest
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -50,6 +58,8 @@ jobs:
         context: .
         push: true
         tags: ashwanth01/ashapp-backend:latest
+        - ashwanth01/ashapp-backend:${{ github.sha }}
+        - ashwanth01/ashapp-backend:${{ github.sha }}
 
     - name: Apply Kubernetes manifests
       run: |

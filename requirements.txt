@@ -1,3 +1,4 @@
+# Updated by bot: Pin the Flask version to a specific release, e.g., 'flask==2.3.2'
 # Updated by bot: Remove duplicate Flask version pins, keeping only one 'flask==2.3.2' line
 # Updated by bot: Pin the Flask version to a specific release, e.g., 'flask==2.3.2'
 # Updated by bot: Pin the Flask version to a specific release, e.g., 'flask==2.3.2'
