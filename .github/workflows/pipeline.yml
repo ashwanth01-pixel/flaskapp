@@ -1,3 +1,5 @@
+# Updated by bot: Use GitHub Secrets for sensitive information like Docker Hub credentials
+# Updated by bot: Add steps for linting (e.g., flake8) and running unit tests before building the Docker image
 # Updated by bot: Add a step to run unit tests before building and pushing the Docker image
 # Updated by bot: Use Git SHA for Docker image tags, e.g., tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
 # Updated by bot: Add a step to run unit tests before building and pushing the Docker image
