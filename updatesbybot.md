@@ -488,3 +488,27 @@
 - Problem: Missing resource limits and requests
 - Applied Fix: Add resource limits and requests to the container spec to ensure proper resource allocation
 
+### File: requirements.txt
+- Problem: Multiple duplicate Flask version pins
+- Applied Fix: Remove duplicate lines and keep only one 'flask==2.3.2' entry
+
+### File: app.py
+- Problem: Debug mode might be enabled in production
+- Applied Fix: Ensure debug mode is always set to False in production: app.run(host='0.0.0.0', port=5000, debug=False)
+
+### File: Dockerfile
+- Problem: No .dockerignore file to exclude unnecessary files
+- Applied Fix: Create a .dockerignore file to exclude files like .git, __pycache__, etc.
+
+### File: k8s/deployment.yaml
+- Problem: Missing resource limits and requests
+- Applied Fix: Add resource limits and requests to the container spec to ensure proper resource allocation
+
+### File: .github/workflows/pipeline.yml
+- Problem: Multiple duplicate tags for Docker image
+- Applied Fix: Remove duplicate tags and use a single line for tags: ashwanth01/ashapp-backend:latest,ashwanth01/ashapp-backend:${{ github.sha }}
+
+### File: .github/workflows/pipeline.yml
+- Problem: Linting and testing steps are defined but not executed
+- Applied Fix: Remove the duplicate definitions of linting and testing steps, and add them before the Docker build step with proper installation of dependencies.
+
