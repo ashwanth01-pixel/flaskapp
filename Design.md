@@ -2,36 +2,30 @@
 
 Below is an automatically generated block diagram of the repo workflow:
 
-Based on the repository structure provided, I can create a Mermaid diagram that represents the architecture and workflow of this project. Here's a reasonable interpretation:
+Based on the repository structure provided, I can create a Mermaid diagram that represents the likely architecture and workflow of this project. Here's my interpretation:
 
 ```mermaid
 graph TD;
-    A[Frontend] --> B[Backend app.py];
-    B --> C[FAISS Index];
-    B --> D[Docker Container];
-    D --> E[Kubernetes Deployment];
-    E --> F[Kubernetes Service];
-    G[GitHub Actions] --> H[CI/CD Pipeline];
-    H --> I[Build Docker Image];
-    I --> J[Push to Docker Hub];
-    J --> K[Deploy to Kubernetes];
-    L[Git Repository] --> G;
-    M[requirements.txt] --> B;
-    N[Dockerfile] --> D;
+    A[Frontend] -->|API Requests| B[Backend app.py]
+    B -->|Vector Search| C[FAISS Index]
+    B -->|Data Storage| D[Database]
+    E[GitHub Actions] -->|CI/CD| F[Docker Build]
+    F -->|Push| G[Docker Hub]
+    G -->|Pull| H[Kubernetes Deployment]
+    H -->|Deploy| I[Kubernetes Service]
+    I -->|Expose| B
+    J[Git Repository] -->|Trigger| E
 ```
 
-This diagram shows:
+This diagram assumes:
 
-1. A Frontend component (assumed) that interacts with the Backend (app.py).
-2. The Backend uses a FAISS index for some functionality (possibly vector search or similarity matching).
-3. The application is containerized using Docker.
-4. The Docker container is deployed to Kubernetes.
-5. There's a CI/CD pipeline using GitHub Actions that:
-   - Builds the Docker image
-   - Pushes the image to Docker Hub
-   - Deploys the application to Kubernetes
-6. The Git repository triggers the GitHub Actions workflow.
-7. The requirements.txt file specifies the Python dependencies for the backend.
-8. The Dockerfile is used to create the Docker image.
+1. There's a frontend component (not explicitly shown in the files) that interacts with the backend.
+2. The backend is written in Python (app.py).
+3. FAISS is used for vector search (faiss_index folder).
+4. There's likely a database, though not explicitly mentioned in the files.
+5. GitHub Actions is used for CI/CD (.github/workflows/pipeline.yml).
+6. Docker is used for containerization (Dockerfile).
+7. The application is deployed to Kubernetes (k8s folder with deployment.yaml and service.yaml).
+8. Docker Hub is likely used as the container registry (based on common practices).
 
-This diagram makes some assumptions based on common practices and the files present in the repository. The actual architecture might differ depending on the specific implementation details not visible in the file structure alone.
+This diagram shows the general flow from development (Git repository) through CI/CD, containerization, and deployment, as well as the main components of the running application.
