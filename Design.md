@@ -2,34 +2,36 @@
 
 Below is an automatically generated block diagram of the repo workflow:
 
-Based on the context provided, I can create a Mermaid diagram that represents the architecture and workflow of the repository. However, please note that the information is limited, so I'll make some assumptions about the typical components in a CI/CD pipeline. Here's a Mermaid diagram that illustrates the workflow:
+Based on the repository structure provided, I can create a Mermaid diagram that represents the architecture and workflow of this project. Here's a reasonable interpretation:
 
 ```mermaid
 graph TD;
-    A[GitHub Repository] -->|Trigger| B[GitHub Actions Workflow]
-    B --> C[Run on Self-Hosted Runner]
-    C --> D[Run Unit Tests]
-    D --> E[Build Docker Image]
-    E --> F[Tag Image with Git SHA]
-    F --> G[Push to Docker Hub]
-    G --> H[Deploy to Kubernetes]
-    H --> I[Apply Resource Limits]
-    H --> J[Set Rolling Update Strategy]
-    K[Frontend] --> L[Backend Container]
-    L --> M[Database]
+    A[Frontend] --> B[Backend app.py];
+    B --> C[FAISS Index];
+    B --> D[Docker Container];
+    D --> E[Kubernetes Deployment];
+    E --> F[Kubernetes Service];
+    G[GitHub Actions] --> H[CI/CD Pipeline];
+    H --> I[Build Docker Image];
+    I --> J[Push to Docker Hub];
+    J --> K[Deploy to Kubernetes];
+    L[Git Repository] --> G;
+    M[requirements.txt] --> B;
+    N[Dockerfile] --> D;
 ```
 
-This diagram shows the following workflow:
+This diagram shows:
 
-1. The process starts with the GitHub repository.
-2. A GitHub Actions workflow is triggered.
-3. The workflow runs on a self-hosted runner.
-4. Unit tests are run.
-5. If tests pass, a Docker image is built.
-6. The image is tagged with the Git SHA for versioning.
-7. The image is pushed to Docker Hub.
-8. The application is deployed to Kubernetes.
-9. Resource limits are applied to the container.
-10. A rolling update strategy is set for the deployment.
+1. A Frontend component (assumed) that interacts with the Backend (app.py).
+2. The Backend uses a FAISS index for some functionality (possibly vector search or similarity matching).
+3. The application is containerized using Docker.
+4. The Docker container is deployed to Kubernetes.
+5. There's a CI/CD pipeline using GitHub Actions that:
+   - Builds the Docker image
+   - Pushes the image to Docker Hub
+   - Deploys the application to Kubernetes
+6. The Git repository triggers the GitHub Actions workflow.
+7. The requirements.txt file specifies the Python dependencies for the backend.
+8. The Dockerfile is used to create the Docker image.
 
-The last three components (Frontend, Backend Container, and Database) represent the typical architecture of the application, although these are assumptions based on common patterns, as the specific details weren't provided in the context.
+This diagram makes some assumptions based on common practices and the files present in the repository. The actual architecture might differ depending on the specific implementation details not visible in the file structure alone.
