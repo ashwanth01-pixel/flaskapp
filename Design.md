@@ -1,38 +1,43 @@
 # Repository Design & Architecture
 
-Below is an automatically generated block diagram of the repo workflow:
+Below is an automatically generated block diagram:
 
-Based on the repository structure provided, I can generate a Mermaid diagram representing the architecture. However, please note that the actual contents of most files are not provided in the repository context, so this diagram is based solely on the file structure.
+Based on the repo provided, here is a Mermaid diagram representing the repository structure:
 
 ```mermaid
 graph TD
     A[Root]
-    A --> B[app.py]
+    A --> B[README.md]
     A --> C[.gitignore]
-    A --> D[requirements.txt]
-    A --> E[Dockerfile]
-    A --> F[.git]
-    A --> G[k8s]
-    A --> H[faiss_index]
-    A --> I[.github]
+    A --> D[Dockerfile]
+    A --> E[requirements.txt]
+    A --> F[SuggestedFix.md]
+    A --> G[app.py]
+    A --> H[Design.md]
+    A --> I[.git]
+    A --> J[.github]
+    A --> K[k8s]
+    A --> L[faiss_index]
     
-    G --> J[deployment.yaml]
-    G --> K[service.yaml]
+    I --> M[config]
+    I --> N[HEAD]
+    I --> O[description]
+    I --> P[packed-refs]
+    I --> Q[index]
+    I --> R[logs]
+    I --> S[refs]
+    I --> T[info]
+    I --> U[objects]
+    I --> V[hooks]
     
-    H --> L[index.pkl]
-    H --> M[index.faiss]
+    J --> W[workflows]
+    W --> X[pipeline.yml]
     
-    I --> N[workflows]
-    N --> O[pipeline.yml]
+    K --> Y[service.yaml]
+    K --> Z[deployment.yaml]
+    
+    L --> AA[index.faiss]
+    L --> AB[index.pkl]
 ```
 
-This diagram shows the basic structure of the repository, including:
-
-1. The main application file (app.py)
-2. Configuration files (.gitignore, requirements.txt, Dockerfile)
-3. Git version control directory (.git)
-4. Kubernetes configuration directory (k8s) with deployment and service files
-5. FAISS index directory (faiss_index) with index files
-6. GitHub Actions workflow directory (.github/workflows) with the pipeline configuration
-
-The pipeline.yml file is the only one whose contents are partially visible in the provided context. It appears to be a CI/CD pipeline configuration, but without the full content, I can't provide more detailed information about its specific steps or structure.
+This diagram represents the file structure of the repository, including the root directory, main files, and subdirectories. The .git directory is expanded to show its internal structure, and other important directories like .github, k8s, and faiss_index are also represented with their contents.
