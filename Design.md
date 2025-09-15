@@ -2,7 +2,7 @@
 
 Below is an automatically generated block diagram of the repo workflow:
 
-Here's a Mermaid diagram in markdown fenced code block format that shows the architecture and workflow of this repository based on the information provided:
+Certainly! Here's a Mermaid diagram in markdown fenced code block format that shows the architecture and workflow of this repository based on the information provided:
 
 ```mermaid
 graph TD;
