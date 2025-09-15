@@ -1,5 +1,6 @@
 
 
+# Updated by bot: Create a .dockerignore file to exclude files like .git, __pycache__, etc.
 WORKDIR /app
 
 COPY requirements.txt .
