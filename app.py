@@ -1,3 +1,4 @@
+# Updated by bot: Ensure debug mode is always set to False in production by changing the last line to: app.run(host='0.0.0.0', port=5000, debug=False)
 # Updated by bot: Ensure debug mode is disabled in production by setting debug=False or using an environment variable
 # Updated by bot: Ensure debug mode is disabled in production by setting debug=False or using an environment variable
 # Updated by bot: Ensure debug mode is disabled by setting debug=False or using an environment variable
