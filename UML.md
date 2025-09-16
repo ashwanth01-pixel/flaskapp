@@ -1,10 +1,6 @@
-# UML Diagrams
+Based on the repository context provided, I can generate basic UML class and sequence diagrams using Mermaid markdown format. These diagrams are derived from the information available in the UML.md file.
 
-Below are automatically generated UML diagrams in Mermaid format:
-
-Based on the repo provided:
-
-The repository does not contain enough information to generate full UML class and sequence diagrams. However, I can provide a basic class diagram for the main Flask application based on the contents of app.py:
+Class Diagram:
 
 ```mermaid
 classDiagram
@@ -20,12 +16,7 @@ classDiagram
     app --> logging
 ```
 
-This diagram shows:
-- The Flask class, which is imported and used to create the 'app' instance
-- The 'app' class, which inherits from Flask and has methods like route() and run()
-- A relationship with the logging module, which is used for logging
-
-For a sequence diagram, we can infer a basic flow:
+Sequence Diagram:
 
 ```mermaid
 sequenceDiagram
@@ -38,11 +29,8 @@ sequenceDiagram
     Flask App->>Client: Return "Hello from Ashapp Backend running on Kubernetes!"
 ```
 
-This sequence diagram shows:
-- A client making a GET request to the root route (/)
-- The Flask app logging the access
-- The Flask app returning the response
+These diagrams are inferred from the contents of the app.py file, as mentioned in the UML.md file. The class diagram shows the relationship between the Flask class and the app instance, as well as the connection to the logging module. The sequence diagram illustrates a basic flow of a client making a GET request to the root route, the Flask app logging the access, and then returning a response.
 
-These diagrams are inferred from the contents of the app.py file. The actual application might be more complex, but without more detailed code, it's not possible to create more comprehensive diagrams.
+It's important to note that these diagrams are simplified representations based on the limited information available in the repository context. The actual application might be more complex, but without more detailed code, it's not possible to create more comprehensive diagrams.
 
-[Source: app.py]
+[Source: UML.md]

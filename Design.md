@@ -1,45 +1,31 @@
-# Repository Design & Architecture
-
-Below is an automatically generated block diagram of the repo workflow:
-
-Based on the repo provided, here is a Mermaid diagram representing the repository structure:
+Based on the repository context provided, I can generate a Mermaid diagram that represents the CI/CD pipeline workflow as described in the `pipeline.yml` file. Here's the diagram in a markdown fenced code block:
 
 ```mermaid
 graph TD
-    A[Root]
-    A --> B[README.md]
-    A --> C[.gitignore]
-    A --> D[Dockerfile]
-    A --> E[requirements.txt]
-    A --> F[SuggestedFix.md]
-    A --> G[app.py]
-    A --> H[Design.md]
-    A --> I[.git]
-    A --> J[.github]
-    A --> K[k8s]
-    A --> L[faiss_index]
-    
-    I --> M[config]
-    I --> N[HEAD]
-    I --> O[description]
-    I --> P[packed-refs]
-    I --> Q[index]
-    I --> R[logs]
-    I --> S[refs]
-    I --> T[info]
-    I --> U[objects]
-    I --> V[hooks]
-    
-    J --> W[workflows]
-    W --> X[pipeline.yml]
-    
-    K --> Y[service.yaml]
-    K --> Z[deployment.yaml]
-    
-    L --> AA[index.faiss]
-    L --> AB[index.pkl]
+    A[Checkout Code] --> B[Lint with flake8]
+    B --> C[Run unit tests]
+    C --> D[Log in to Docker Hub]
+    D --> E[Build and push Docker image]
+    E --> F[Apply Kubernetes manifests]
+    F --> G[Get Service NodePort URL]
+    G --> H[Verify deployment]
+    H --> I[Test application]
+    I --> J{Test successful?}
+    J -->|Yes| K[Pipeline Complete]
+    J -->|No| L[Cleanup]
 ```
 
-This diagram is generated based on the file structure provided in the repository context. It shows the main directory structure, including the root directory, .git directory, .github directory, k8s directory, and faiss_index directory, along with their respective files and subdirectories.
+This diagram represents the main steps in the CI/CD pipeline as defined in the `pipeline.yml` file [Source: pipeline.yml]. The workflow includes:
 
-The diagram is created using the information from the file list in the repository context, which includes all the files and directories mentioned.
+1. Checking out the code
+2. Linting with flake8
+3. Running unit tests
+4. Logging into Docker Hub
+5. Building and pushing the Docker image
+6. Applying Kubernetes manifests
+7. Getting the Service NodePort URL
+8. Verifying the deployment
+9. Testing the application
+10. Completing the pipeline or cleaning up in case of failure
+
+The diagram shows the logical flow of these steps and the conditional cleanup step that occurs if the test fails.
