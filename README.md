@@ -2,16 +2,18 @@
 
 [Tech Stack](TECHSTACK.md) | [Workflow](WORKFLOW.md)
 
-Based on the repository context provided, this appears to be a Kubernetes-deployed Flask application with CI/CD automation. The main components are:
+Based on the repository context, this appears to be a Kubernetes-deployed Flask application with CI/CD automation. The main components are:
 
-1. Flask web application, likely defined in app.py [README.md]
-2. Kubernetes deployment files (k8s/deployment.yaml and k8s/service.yaml) [README.md]
-3. Docker containerization with a Dockerfile in the root directory [README.md]
-4. CI/CD pipeline using GitHub Actions (.github/workflows/pipeline.yml) [README.md]
-5. FAISS index files for similarity search or information retrieval (faiss_index/index.faiss and faiss_index/index.pkl) [README.md]
-6. Documentation files including README.md, Design.md, SuggestedFix.md, and UML.md [README.md]
+1. Flask web application, likely defined in app.py
+2. Kubernetes deployment files (k8s/deployment.yaml and k8s/service.yaml) 
+3. Docker containerization with a Dockerfile in the root directory
+4. CI/CD pipeline using GitHub Actions (.github/workflows/pipeline.yml)
+5. FAISS index files for similarity search or information retrieval (faiss_index/index.faiss and faiss_index/index.pkl)
+6. Documentation files including README.md, Design.md, SuggestedFix.md, and UML.md
 
 The overall purpose of this repository is to host a Flask-based web application, with a focus on automated deployment to Kubernetes and potentially incorporating FAISS for efficient similarity search capabilities.
+
+[Source: README.md]
 
 ## Tech Stack
 Based on the repository context provided, the main tech stack includes:

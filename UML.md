@@ -31,6 +31,4 @@ sequenceDiagram
 
 These diagrams are derived from the information available in the UML.md file. The class diagram shows the relationship between the Flask class and the app instance, as well as the connection to the logging module. The sequence diagram illustrates a basic flow of a client making a GET request to the root route, the Flask app logging the access, and then returning a response.
 
-It's important to note that these diagrams are simplified representations based on the limited information available in the repository context. The actual application might be more complex, but without more detailed code, it's not possible to create more comprehensive diagrams.
-
 [Source: UML.md]

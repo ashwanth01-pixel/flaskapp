@@ -1,4 +1,4 @@
-Based on the repository context provided, I can generate a Mermaid diagram representing the CI/CD pipeline workflow as described in the `pipeline.yml` file. Here's the diagram in a markdown fenced code block:
+Based on the repository context, I can provide you with a Mermaid diagram representing the CI/CD pipeline workflow as described in the `pipeline.yml` file. Here's the diagram in a markdown fenced code block:
 
 ```mermaid
 graph TD
@@ -15,17 +15,6 @@ graph TD
     J -->|No| L[Cleanup]
 ```
 
-This diagram represents the main steps in the CI/CD pipeline as defined in the `pipeline.yml` file [Source: pipeline.yml]. The workflow includes:
+This diagram represents the main steps in the CI/CD pipeline as defined in the `pipeline.yml` file. The workflow includes checking out the code, linting, running unit tests, building and pushing the Docker image, applying Kubernetes manifests, verifying the deployment, and testing the application. It also shows the conditional cleanup step that occurs if the test fails.
 
-1. Checking out the code
-2. Linting with flake8
-3. Running unit tests
-4. Logging into Docker Hub
-5. Building and pushing the Docker image
-6. Applying Kubernetes manifests
-7. Getting the Service NodePort URL
-8. Verifying the deployment
-9. Testing the application
-10. Completing the pipeline or cleaning up in case of failure
-
-The diagram shows the logical flow of these steps and the conditional cleanup step that occurs if the test fails.
+[Source: Design.md]
