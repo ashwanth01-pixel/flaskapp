@@ -1,112 +1,109 @@
 # Repository Summary
 
-[Tech Stack](TECHSTACK.md) | [Workflow](WORKFLOW.md)
+Based on the provided repository context, particularly the app.py file, this repository appears to be for a simple Flask-based web application designed to run on Kubernetes. Here's a summary of its purpose and main components:
 
-This repository appears to be for a backend application called "ashapp-backend". The main components and purpose can be summarized as follows:
+1. Purpose:
+The repository contains a basic backend web application that serves a "Hello" message when accessed. It's designed to be containerized and deployed on a Kubernetes cluster.
 
-1. Kubernetes Deployment (deployment.yaml):
-   - Defines a Deployment for the ashapp-backend application
-   - Specifies 2 replicas
-   - Includes resource limits and requests for CPU and memory
-   - Implements readiness and liveness probes for health checking
-   - Uses a rolling update strategy for deployments
+2. Main components:
 
-2. CI/CD Pipeline (pipeline.yml):
-   - Defines a GitHub Actions workflow for building and deploying the application
-   - Includes steps for linting (flake8) and running unit tests (pytest)
-   - Builds and pushes a Docker image to Docker Hub
-   - Applies Kubernetes manifests and verifies the deployment
-   - Uses GitHub Secrets for sensitive information like Docker Hub credentials
+a. Flask Application (app.py):
+- This is the core of the application, using the Flask framework.
+- It sets up a single route ("/") that returns a greeting message.
+- The application is configured to run on host '0.0.0.0' and port 5000.
+- Debug mode is explicitly set to False for production safety.
+- Logging is set up to record when the home route is accessed.
 
-3. Python Dependencies (requirements.txt):
-   - Lists Flask as the main dependency, pinned to version 2.3.2
+b. Kubernetes Deployment (deployment.yaml):
+- While not fully visible in the provided context, this file likely contains the Kubernetes deployment configuration for the application.
 
-4. Kubernetes Service (service.yaml):
-   - Exposes the application as a NodePort service
-   - Maps port 5000 internally to NodePort 30080
+c. Kubernetes Service (service.yaml):
+- Exposes the application as a NodePort service on port 30080.
 
-5. Docker Configuration (Dockerfile):
-   - Uses Python 3.9-slim as the base image
-   - Installs dependencies from requirements.txt
-   - Copies the application code and exposes port 5000
+d. CI/CD Pipeline (pipeline.yml):
+- Though not fully visible, this file likely contains the CI/CD configuration for building, testing, and deploying the application.
 
-The repository's purpose is to manage a Flask-based backend application, including its deployment configuration, CI/CD pipeline, and containerization. It uses Kubernetes for orchestration and GitHub Actions for automated building and deployment.
+e. Dependencies (requirements.txt):
+- Specifies the exact version of Flask (2.3.2) required for the application.
+
+The repository demonstrates best practices such as disabling debug mode in production, using environment variables for configuration, and pinning dependency versions. It's structured to support containerization and Kubernetes deployment, suggesting it's intended for a scalable, cloud-native environment.
 
 ## Tech Stack
 Based on the repository context provided, the main tech stack includes:
 
-1. Python: The primary programming language used, as evidenced by the Flask application in app.py and the requirements.txt file.
+1. Python: This is the primary programming language used, as evidenced by the Flask application in app.py.
 
-2. Flask: A Python web framework used for the backend application, specified in requirements.txt and used in app.py.
+2. Flask: A Python web framework used for the backend application, as seen in app.py and requirements.txt (flask==2.3.2).
 
-3. Docker: Used for containerization, as seen in the Docker-related steps in pipeline.yml.
+3. Docker: Used for containerization, as indicated by the Docker-related steps in pipeline.yml.
 
-4. Kubernetes: Used for container orchestration and deployment, as shown in deployment.yaml and service.yaml files.
+4. Kubernetes: Used for container orchestration and deployment, as shown in deployment.yaml and service.yaml.
 
-5. GitHub Actions: The CI/CD pipeline is implemented using GitHub Actions, as seen in the pipeline.yml file.
+5. GitHub Actions: The CI/CD pipeline is implemented using GitHub Actions, as seen in pipeline.yml.
 
-6. flake8: A linting tool for Python, used in the pipeline (pipeline.yml).
+6. pytest: Used for running unit tests, as mentioned in pipeline.yml.
 
-7. pytest: A testing framework for Python, used in the pipeline (pipeline.yml).
+7. flake8: Used for linting Python code, as seen in pipeline.yml.
 
-8. kubectl: The Kubernetes command-line tool, used in the pipeline for applying manifests and verifying deployments (pipeline.yml).
+8. kubectl: The Kubernetes command-line tool, used in pipeline.yml for applying Kubernetes manifests.
 
-These technologies form the core of the application's development, testing, containerization, and deployment processes.
+These components form the core of the tech stack used in this project, covering the application framework, containerization, orchestration, and CI/CD pipeline.
 
 ## Workflow
 Here's a detailed developer guide for this repository:
 
 1. Project Overview:
-This repository contains a Flask-based backend application that is containerized and deployed to Kubernetes. The main application file is `app.py`, which serves a simple "Hello" message.
+This repository contains a simple Flask-based backend application that's containerized and deployed to Kubernetes. The main application file is `app.py`, which serves a basic "Hello" message.
 
-2. Development Environment Setup:
-- Ensure Python 3.9 is installed on your system.
-- Install the required dependencies by running `pip install -r requirements.txt`.
-- The main dependency is Flask, pinned to version 2.3.2 (requirements.txt).
+2. Setup and Installation:
+   a. Clone the repository
+   b. Install dependencies:
+      - Use `pip install -r requirements.txt` to install the required packages (flask==2.3.2) as specified in `requirements.txt`.
 
-3. Application Structure:
-- `app.py`: Contains the main Flask application code.
-- `Dockerfile`: Used to build the Docker image for the application.
-- `requirements.txt`: Lists the Python dependencies.
-- `pipeline.yml`: GitHub Actions workflow for CI/CD.
-- `deployment.yaml`: Kubernetes deployment configuration.
+3. Local Development:
+   - Run the Flask application locally using `python app.py`
+   - The app will run on `http://localhost:5000`
+   - Note: Debug mode is disabled in production (see `app.py`)
 
-4. Local Development:
-- Run the application locally using `python app.py`.
-- The app will be accessible at `http://localhost:5000`.
-- Note: Debug mode is disabled for security reasons (app.py).
+4. Docker:
+   - The `Dockerfile` specifies how to build the Docker image:
+     - Uses Python 3.9-slim as the base image
+     - Copies and installs requirements
+     - Copies the application code
+     - Exposes port 5000
+     - Runs the app using `python -u app.py`
+   - Build the Docker image: `docker build -t ashwanth01/ashapp-backend:latest .`
+   - Run the container: `docker run -p 5000:5000 ashwanth01/ashapp-backend:latest`
 
-5. Docker Build:
-- Use the provided Dockerfile to build the image:
-  `docker build -t ashwanth01/ashapp-backend:latest .`
-- The Dockerfile uses a Python 3.9 slim base image and copies the application files into the container.
+5. CI/CD Pipeline:
+   The `pipeline.yml` file defines the GitHub Actions workflow:
+   - Runs on self-hosted runners
+   - Steps include:
+     a. Linting with flake8
+     b. Running unit tests with pytest
+     c. Building and pushing the Docker image to Docker Hub
+     d. Applying Kubernetes manifests
+     e. Verifying the deployment
+     f. Testing the application
+   - Note: The pipeline uses GitHub Secrets for Docker Hub credentials
 
-6. Continuous Integration/Continuous Deployment (CI/CD):
-- The `pipeline.yml` file defines the GitHub Actions workflow.
-- It includes steps for linting (flake8), running unit tests (pytest), building and pushing the Docker image, and deploying to Kubernetes.
-- The workflow uses GitHub Secrets for sensitive information like Docker Hub credentials.
+6. Kubernetes Deployment:
+   The `deployment.yaml` file defines the Kubernetes deployment:
+   - Deploys 2 replicas of the application
+   - Sets resource limits and requests
+   - Configures readiness and liveness probes
+   - Uses a rolling update strategy
 
-7. Kubernetes Deployment:
-- The `deployment.yaml` file defines the Kubernetes deployment configuration.
-- It specifies 2 replicas of the application.
-- Resource limits and requests are set to ensure proper resource allocation.
-- Readiness and liveness probes are configured for health checking.
-- A rolling update strategy is implemented for smooth updates.
+7. Best Practices and Notes:
+   - The Flask version is pinned to 2.3.2 in `requirements.txt` for consistency
+   - Debug mode is disabled in production in `app.py`
+   - The Kubernetes deployment includes resource limits and health checks
+   - The CI/CD pipeline includes linting and testing steps before deployment
+   - Docker image tags use both 'latest' and the Git SHA for versioning
 
-8. Best Practices and Notes:
-- The Flask version is pinned to 2.3.2 for consistency (requirements.txt).
-- Debug mode is disabled in production for security (app.py).
-- Docker image tags use both 'latest' and the Git SHA for versioning (pipeline.yml).
-- Sensitive information is stored in GitHub Secrets (pipeline.yml).
-- The pipeline includes linting and unit testing before building and deploying (pipeline.yml).
-- Kubernetes deployment includes resource limits, health checks, and a rolling update strategy (deployment.yaml).
+8. Troubleshooting:
+   - Check Kubernetes logs: `kubectl logs <pod-name>`
+   - Verify service: `kubectl get services`
+   - Check deployment status: `kubectl rollout status deployment/ashapp-backend`
 
-9. Deployment and Testing:
-- The CI/CD pipeline handles deployment to Kubernetes.
-- After deployment, the application should be accessible via the NodePort service at `http://<NODE_IP>:30080`.
-- The pipeline includes a step to verify the deployment and test the application.
-
-10. Cleanup:
-- In case of deployment failure, the pipeline includes a cleanup step to delete the Kubernetes deployment and service.
-
-Remember to update the Docker Hub credentials and any other environment-specific configurations before deploying to your own environment.
+This guide provides an overview of the project structure, setup instructions, and key aspects of the development and deployment process based on the files in the repository.
