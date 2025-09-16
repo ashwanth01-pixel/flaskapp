@@ -1,65 +1,90 @@
 Here's a detailed developer guide for this repository based on the provided context:
 
-1. Project Structure:
-   The repository has a typical structure for a Flask application with Kubernetes deployment (SuggestedFix.md, Design.md). Key components include:
+1. Project Overview:
+   This is a Flask-based web application deployed on Kubernetes with CI/CD automation via GitHub Actions. The application likely incorporates FAISS for vector search capabilities. [README.md]
+
+2. Development Environment Setup:
+   - Use Python 3.x (specific version not provided)
+   - Install dependencies: `pip install -r requirements.txt`
+   - Flask 2.3.2 is the main web framework [requirements.txt]
+
+3. Project Structure:
    - Root directory: Contains main application files (app.py, Dockerfile, requirements.txt)
    - .github/workflows: CI/CD pipeline configuration (pipeline.yml)
    - k8s: Kubernetes manifests (deployment.yaml, service.yaml)
    - faiss_index: FAISS index files for vector search (index.faiss, index.pkl)
+   [WORKFLOW.md]
 
-2. Development Environment:
-   - Use Python 3.x (specific version not provided in context)
-   - Install dependencies: `pip install -r requirements.txt`
-   - Flask is the main web framework (requirements.txt)
-
-3. Application Code:
-   - Main application logic is in app.py (mentioned in Design.md)
+4. Application Code:
+   - Main application logic is in app.py
    - FAISS index is used for vector search (faiss_index directory)
+   [WORKFLOW.md]
 
-4. Testing:
-   - No dedicated test directory exists, but it's recommended to add one (SuggestedFix.md)
-   - The CI/CD pipeline includes steps for linting with flake8 and running pytest (pipeline.yml)
+5. Testing:
+   - Add a `tests/` directory with unit and integration tests
+   - Run tests using pytest: `pytest`
+   - Linting is done with flake8: `flake8 .`
+   [SuggestedFix.md, pipeline.yml]
 
-5. Docker:
-   - Dockerfile is present in the root directory (Design.md)
+6. Docker:
+   - Dockerfile is present in the root directory
    - Build image: `docker build -t ashwanth01/ashapp-backend:latest .`
    - Run container: `docker run -p 5000:5000 ashwanth01/ashapp-backend:latest`
+   [WORKFLOW.md]
 
-6. Kubernetes Deployment:
-   - Kubernetes manifests are in the k8s directory (deployment.yaml, service.yaml)
+7. Kubernetes Deployment:
+   - Kubernetes manifests are in the k8s directory
    - Deploy: 
      ```
      kubectl apply -f k8s/deployment.yaml
      kubectl apply -f k8s/service.yaml
      ```
-   - The deployment uses a rolling update strategy and includes resource limits and health checks (deployment.yaml)
+   - The deployment uses a rolling update strategy and includes resource limits and health checks
+   [WORKFLOW.md, SuggestedFix.md]
 
-7. CI/CD:
+8. CI/CD:
    - GitHub Actions workflow is defined in .github/workflows/pipeline.yml
    - The pipeline includes steps for linting, testing, building Docker image, and deploying to Kubernetes
-   - Docker Hub is used for image registry (pipeline.yml)
+   - Docker Hub is used for image registry
+   - Images are tagged with both 'latest' and the Git SHA
+   [pipeline.yml, WORKFLOW.md]
 
-8. Environment Variables:
-   - FLASK_ENV and PYTHONUNBUFFERED are set in the Kubernetes deployment (deployment.yaml)
-   - It's recommended to use a .env file for local development (SuggestedFix.md)
+9. Environment Variables:
+   - Use environment variables for sensitive information
+   - Add a `.env.example` file to show which variables are needed
+   - FLASK_ENV and PYTHONUNBUFFERED are set in the Kubernetes deployment
+   [SuggestedFix.md, WORKFLOW.md]
 
-9. Logging:
-   - No specific logging configuration is mentioned, but it's recommended to add one (SuggestedFix.md)
+10. Logging:
+    - Implement a logging configuration file for proper logging throughout the application
+    [SuggestedFix.md]
 
-10. Security:
-    - Use environment variables for sensitive information (SuggestedFix.md)
-    - Implement a .dockerignore file (SuggestedFix.md)
-    - Use GitHub Secrets for sensitive information in CI/CD (pipeline.yml)
+11. Documentation:
+    - Expand documentation by adding:
+      - CONTRIBUTING.md for potential contributors
+      - API.md or ENDPOINTS.md to document available endpoints
+      - DEPLOYMENT.md with deployment instructions
+    [SuggestedFix.md]
 
-11. Contributing:
-    - No CONTRIBUTING.md file exists, but it's recommended to add one (SuggestedFix.md)
-    - Follow Python style guidelines (implied by use of flake8 in pipeline.yml)
+12. Dependency Management:
+    - Consider using `Pipfile` and `Pipfile.lock` (for pipenv) or `poetry.lock` (for poetry) in addition to `requirements.txt`
+    [SuggestedFix.md]
 
-12. Deployment:
-    - The application is deployed on a Kubernetes cluster
-    - The service is exposed on NodePort 30080 (pipeline.yml)
+13. Security:
+    - Use environment variables for sensitive information
+    - Implement a .dockerignore file
+    - Use GitHub Secrets for sensitive information in CI/CD
+    [SuggestedFix.md, WORKFLOW.md]
 
-13. Versioning:
-    - Docker images are tagged with both 'latest' and the Git SHA (pipeline.yml)
+14. FAISS Index Management:
+    - Implement a process for updating and managing FAISS index files
+    - Consider versioning these files if they change frequently
+    [SuggestedFix.md]
 
-This guide provides an overview based on the available context. For more detailed information, developers should refer to the specific files mentioned and any additional documentation that may exist in the repository.
+15. Best Practices:
+    - Follow Python style guidelines (implied by use of flake8 in pipeline)
+    - Ensure all dependencies in requirements.txt are pinned to specific versions
+    - Review Kubernetes manifests for best practices in resource limits, health checks, and security contexts
+    [SuggestedFix.md, WORKFLOW.md]
+
+This guide provides an overview based on the available context. Developers should refer to the specific files mentioned for more

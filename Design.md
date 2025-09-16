@@ -1,4 +1,4 @@
-Based on the repository context provided, I can generate a Mermaid diagram that represents the CI/CD pipeline workflow as described in the `pipeline.yml` file. Here's the diagram in a markdown fenced code block:
+Based on the repository context provided, I can generate a Mermaid diagram representing the CI/CD pipeline workflow as described in the `pipeline.yml` file. Here's the diagram in a markdown fenced code block:
 
 ```mermaid
 graph TD
