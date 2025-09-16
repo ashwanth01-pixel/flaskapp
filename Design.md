@@ -1,20 +1,24 @@
-Based on the repository context, I can provide you with a Mermaid diagram representing the CI/CD pipeline workflow as described in the `pipeline.yml` file. Here's the diagram in a markdown fenced code block:
+Based on the provided repository context, I can generate a Mermaid diagram that illustrates the CI/CD pipeline and deployment process for the application. Here's a Mermaid diagram in markdown fenced code block format:
 
 ```mermaid
 graph TD
-    A[Checkout Code] --> B[Lint with flake8]
-    B --> C[Run unit tests]
-    C --> D[Log in to Docker Hub]
-    D --> E[Build and push Docker image]
-    E --> F[Apply Kubernetes manifests]
-    F --> G[Get Service NodePort URL]
-    G --> H[Verify deployment]
-    H --> I[Test application]
-    I --> J{Test successful?}
-    J -->|Yes| K[Pipeline Complete]
-    J -->|No| L[Cleanup]
+    A[Developer Push] --> B[GitHub Actions]
+    B --> C[Lint with flake8]
+    C --> D[Run unit tests]
+    D --> E[Build Docker Image]
+    E --> F[Push to Docker Hub]
+    F --> G[Apply Kubernetes Manifests]
+    G --> H[Verify Deployment]
+    H --> I[Test Application]
+    I --> J[Cleanup on Failure]
+
+    subgraph Kubernetes Cluster
+    K[Deployment: ashapp-backend]
+    L[Service: ashapp-backend]
+    end
+
+    G --> K
+    G --> L
 ```
 
-This diagram represents the main steps in the CI/CD pipeline as defined in the `pipeline.yml` file. The workflow includes checking out the code, linting, running unit tests, building and pushing the Docker image, applying Kubernetes manifests, verifying the deployment, and testing the application. It also shows the conditional cleanup step that occurs if the test fails.
-
-[Source: Design.md]
+This diagram is based on the information from the `pipeline.yml` file, which outlines the CI/CD process, and the `deployment.yaml` file, which describes the Kubernetes deployment. The diagram shows the flow from a developer push to GitHub, through the various steps in the GitHub Actions workflow, and finally to the deployment and verification in the Kubernetes cluster.
