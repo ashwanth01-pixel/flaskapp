@@ -1,10 +1,10 @@
 # Suggested Fixes
 
-Based on the repository context provided, I can suggest several improvements for best practices and scalability:
+Based on the provided repository context, I can suggest several improvements for best practices and scalability:
 
-1. Deployment Configuration (deployment.yaml):
-   - The file has multiple duplicate resource limit definitions. Clean up and keep only one set of resource limits and requests for the container.
-   - Implement a rolling update strategy as suggested in the comments: 
+1. Deployment (deployment.yaml):
+   - The file has multiple duplicate resource definitions. Remove the redundant `resources` blocks and keep only one set of resource limits and requests per container.
+   - Implement the rolling update strategy that has been suggested multiple times in the comments. Add:
      ```yaml
      strategy:
        type: RollingUpdate
@@ -12,37 +12,35 @@ Based on the repository context provided, I can suggest several improvements for
          maxSurge: 1
          maxUnavailable: 0
      ```
-   - The readiness and liveness probes are good practices already implemented.
 
-2. CI/CD Pipeline (pipeline.yml):
-   - Implement the linting and unit testing steps that are commented out:
+2. Pipeline (pipeline.yml):
+   - Remove duplicate linting and testing steps. Keep only one instance of each:
      ```yaml
      - name: Lint with flake8
        run: flake8 .
      - name: Run unit tests
        run: pytest
      ```
-   - Use Git SHA for Docker image tags as suggested:
+   - Implement the suggested Git SHA tagging for Docker images:
      ```yaml
-     tags: 
-       - ashwanth01/ashapp-backend:latest
-       - ashwanth01/ashapp-backend:${{ github.sha }}
+     tags: |
+       ashwanth01/ashapp-backend:latest
+       ashwanth01/ashapp-backend:${{ github.sha }}
      ```
 
-3. Dependencies (requirements.txt):
-   - The Flask version is correctly pinned to a specific version (2.3.2), which is a good practice.
-   - Consider adding other dependencies your application might need and pin their versions as well.
+3. Requirements (requirements.txt):
+   - The file correctly pins the Flask version to 2.3.2. Ensure all other dependencies are also pinned to specific versions for consistency.
 
-4. Application Code (app.py):
-   - The debug mode is correctly set to False for production, which is a good security practice.
-   - Consider adding more robust error handling and logging throughout the application.
+4. Application (app.py):
+   - The debug mode is correctly set to False for production. However, consider using an environment variable to control debug mode:
+     ```python
+     debug = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+     app.run(host='0.0.0.0', port=5000, debug=debug)
+     ```
 
-5. Service Configuration (service.yaml):
-   - The NodePort service type is fine for development, but for production, consider using a LoadBalancer or Ingress for better scalability and security.
+5. General Scalability Improvements:
+   - Consider implementing horizontal pod autoscaling in the Kubernetes deployment.
+   - Implement proper error handling and logging throughout the application.
+   - Consider adding health checks and readiness probes to the Kubernetes deployment for better reliability.
 
-6. General Scalability Improvements:
-   - Implement horizontal pod autoscaling (HPA) to automatically adjust the number of pod replicas based on CPU or custom metrics.
-   - Consider using a database for persistence if your application requires it, and ensure it's properly configured for high availability.
-   - Implement proper monitoring and alerting for your application and infrastructure.
-
-These improvements will enhance the application's reliability, security, and scalability in a Kubernetes environment.
+These improvements will enhance the project's adherence to best practices and improve its scalability potential.
